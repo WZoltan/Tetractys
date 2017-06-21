@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2017 by WZoltan (http://jsbin.com/gecabom/2/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Tetractys</title>
+</head>
+<body>
+<canvas id="myCanvas" height=300 width=400 style="border: 1px solid black"></canvas>
+<script id="jsbin-javascript">
+var c = document.getElementById('myCanvas').getContext('2d');
+
+var cw=450;
+var ch=300;
+
+var a = 80;
+var color = null;
+var sin30 = Math.sin(Math.PI / 6);
+var cos30 = Math.cos(Math.PI / 6);
+
+function triangle(x0,y0,a,color){
+c.beginPath();
+c.moveTo(x0,y0);
+c.lineTo(x0-a*sin30,y0+a*cos30);
+c.lineTo(x0+a*sin30,y0+a*cos30);
+c.lineTo(x0,y0);
+c.fillStyle=color;
+c.fill();
+}
+   var x0=cw/2-a;
+   var y0=ch-150;
+ 
+for (i=0; i<3; i++) {
+  switch (i) {
+      case 0:
+        color = 'rgb(0, 187, 255)';
+        break;
+      case 1:
+        color = 'rgb(0, 255, 123)';
+        break;
+      case 2:
+        color = 'rgb(255, 0, 63)';
+        break;
+    }
+  y0 = ch-150-i*a*cos30;
+  for (j=0; j<3; j++) {
+     x0 =cw/2-a + (j)*a-0.5*i*a;
+     if (i<=j){
+   triangle(x0,y0,a,color);
+  }
+  }
+}
+
+</script>
+</body>
+</html>
